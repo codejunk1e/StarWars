@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**
- * @author kemosabe_x
+ * @author Robin
  * Created on 5/30/20
  */
 
@@ -40,13 +40,13 @@ class StarWarsService {
             addInterceptor(logger)
         }
 
-        val retrofit = Retrofit.Builder().apply {
+        private val retrofit: Retrofit = Retrofit.Builder().apply {
             baseUrl(API_URL)
             addConverterFactory(GsonConverterFactory.create())
             client(okHttp.build())
         }.build()
 
-
+        @JvmStatic
         fun getInstance (): StarWarsEndpoints {
             return  retrofit.create(StarWarsEndpoints::class.java)
         }
