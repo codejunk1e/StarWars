@@ -1,33 +1,32 @@
 package com.project.valhallastudio.starwars.adapters
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.project.valhallastudio.starwars.R
+import com.project.valhallastudio.starwars.models.Item
+import com.project.valhallastudio.starwars.views.fragments.ResourceFragment
 
 /**
  * @author Robin
  * Created on 5/6/20
  */
-class StarPagerAdapter(private val data : List<ResourceFragment>) : RecyclerView.Adapter<StarPagerAdapter.ViewHolder>() {
+class StarPagerAdapter( fragment : Fragment) :  FragmentStateAdapter(fragment) {
 
+    private val itemList = listOf(
+        Item(R.drawable.one, "Luke Skywalker"),
+        Item(R.drawable.two, "CP R7"),
+        Item(R.drawable.dp, "Luke Skywalker"),
+        Item(R.drawable.two, "CP R7"),
+        Item(R.drawable.one, "Luke Skywalker"),
+        Item(R.drawable.dp, "CP R7")
+    )
 
-    override fun getItemCount(): Int = data.size
+    override fun getItemCount(): Int = 6
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.resource_sceen_items, parent, false))
+    override fun createFragment(position: Int): Fragment {
+        return ResourceFragment(itemList)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(data[position])
+   data class Resource(val name: String){}
 
-
-
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: ResourceFragment) {
-        }
-
-    }
-    data class ResourceFragment( val name: String){}
 }

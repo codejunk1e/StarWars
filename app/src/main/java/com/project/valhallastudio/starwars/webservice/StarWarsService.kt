@@ -39,14 +39,13 @@ class StarWarsService {
             )
             addInterceptor(logger)
         }
-
         private val retrofit: Retrofit = Retrofit.Builder().apply {
             baseUrl(API_URL)
             addConverterFactory(GsonConverterFactory.create())
             client(okHttp.build())
         }.build()
 
-        @JvmStatic
+        @Synchronized
         fun getInstance (): StarWarsEndpoints {
             return  retrofit.create(StarWarsEndpoints::class.java)
         }

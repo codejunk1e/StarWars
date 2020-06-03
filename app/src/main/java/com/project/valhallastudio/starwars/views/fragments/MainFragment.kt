@@ -1,30 +1,19 @@
 package com.project.valhallastudio.starwars.views.fragments
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.lifecycleScope
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.project.valhallastudio.starwars.R
 import com.project.valhallastudio.starwars.adapters.StarPagerAdapter
 import com.project.valhallastudio.starwars.databinding.FragmentMainBinding
-import com.project.valhallastudio.starwars.responsemodels.RootResponse
-import com.project.valhallastudio.starwars.viewmodels.MainActivityViewModel
 import com.project.valhallastudio.starwars.viewmodels.MainFragmentViewModel
-import com.project.valhallastudio.starwars.webservice.StarWarsService
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
  * @author Robin
@@ -48,25 +37,37 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val list = listOf(
-            StarPagerAdapter.ResourceFragment("People"),
-            StarPagerAdapter.ResourceFragment("Planets"),
-            StarPagerAdapter.ResourceFragment("Films"),
-            StarPagerAdapter.ResourceFragment("Species"),
-            StarPagerAdapter.ResourceFragment("Vehicles"),
-            StarPagerAdapter.ResourceFragment("Starships")
-        )
-
-
-        val starPagerAdapter = StarPagerAdapter(list)
+        val starPagerAdapter = StarPagerAdapter(this)
         binding.viewpagerMain.adapter = starPagerAdapter
 
 
         TabLayoutMediator(binding.tabLayoutMain, binding.viewpagerMain){ tab: TabLayout.Tab, position: Int ->
-            tab.text = viewModel.getList()[position]
+            tab.text = viewModel.resourceList[position].name
+
         }.attach()
 
+        binding.viewpagerMain.registerOnPageChangeCallback(
+            object: ViewPager2.OnPageChangeCallback(){
+                override fun onPageSelected(position: Int) {
+
+                    when(position){
+                        0 -> imageview_main.setImageResource(R.drawable.character)
+                        1 -> imageview_main.setImageResource(R.drawable.planets)
+                        2 -> imageview_main.setImageResource(R.drawable.films)
+                        3 -> imageview_main.setImageResource(R.drawable.species)
+                        4 -> imageview_main.setImageResource(R.drawable.vehicles)
+                        5 -> imageview_main.setImageResource(R.drawable.starships)
+
+                    }
+                }
+            }
+        )
 
 
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }

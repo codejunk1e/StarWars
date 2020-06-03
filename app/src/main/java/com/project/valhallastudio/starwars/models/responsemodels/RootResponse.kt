@@ -1,4 +1,4 @@
-package com.project.valhallastudio.starwars.responsemodels
+package com.project.valhallastudio.starwars.models.responsemodels
 
 
 import com.google.gson.annotations.SerializedName

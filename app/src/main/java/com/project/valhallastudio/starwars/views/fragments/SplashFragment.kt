@@ -29,11 +29,10 @@ class SplashFragment : Fragment() {
     }
 
     private fun scheduleSplashScreen() {
-        val splashScreenDuration = getSplashScreenDuration()
 
         Handler().postDelayed({
             findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
-        }, splashScreenDuration)
+        }, getSplashScreenDuration())
 
     }
 }

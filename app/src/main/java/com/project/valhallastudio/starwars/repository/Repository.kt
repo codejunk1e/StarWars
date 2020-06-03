@@ -1,8 +1,7 @@
 package com.project.valhallastudio.starwars.repository
 
-import com.project.valhallastudio.starwars.responsemodels.RootResponse
+import com.project.valhallastudio.starwars.models.responsemodels.RootResponse
 import com.project.valhallastudio.starwars.webservice.StarWarsService
-import kotlinx.coroutines.Deferred
 
 /**
  * @author robin
@@ -11,10 +10,6 @@ import kotlinx.coroutines.Deferred
 class Repository {
 
     companion object{
-    }
-
-    suspend fun getRootResponseAsync() : RootResponse {
-        return StarWarsService.getInstance().getRootResponseAsync()
     }
 
 
