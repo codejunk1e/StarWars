@@ -24,7 +24,7 @@ data class PeopleResponse(
     @SerializedName("mass")
     val mass: String,
     @SerializedName("name")
-    val name: String,
+    override var name: String,
     @SerializedName("skin_color")
     val skinColor: String,
     @SerializedName("species")
@@ -35,4 +35,4 @@ data class PeopleResponse(
     val url: String,
     @SerializedName("vehicles")
     val vehicles: List<String>
-)
+): Response()

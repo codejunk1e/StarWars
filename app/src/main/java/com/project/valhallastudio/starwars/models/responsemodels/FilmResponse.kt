@@ -3,7 +3,7 @@ package com.project.valhallastudio.starwars.models.responsemodels
 
 import com.google.gson.annotations.SerializedName
 
-data class FilmResponse(
+data class FilmResponse (
     @SerializedName("characters")
     val characters: List<String>,
     @SerializedName("created")
@@ -27,9 +27,9 @@ data class FilmResponse(
     @SerializedName("starships")
     val starships: List<String>,
     @SerializedName("title")
-    val title: String,
+    override var title: String,
     @SerializedName("url")
     val url: String,
     @SerializedName("vehicles")
     val vehicles: List<String>
-)
+) : Response()

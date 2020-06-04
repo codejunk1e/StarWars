@@ -25,11 +25,11 @@ import com.google.gson.annotations.SerializedName
         @SerializedName("language")
         val language: String,
         @SerializedName("name")
-        val name: String,
+        override var name: String,
         @SerializedName("people")
         val people: List<String>,
         @SerializedName("skin_colors")
         val skinColors: String,
         @SerializedName("url")
         val url: String
-    )
+    ): Response()

@@ -30,7 +30,7 @@ data class StarshipsResponse(
     @SerializedName("model")
     val model: String,
     @SerializedName("name")
-    val name: String,
+    override var name: String,
     @SerializedName("passengers")
     val passengers: String,
     @SerializedName("pilots")
@@ -39,4 +39,4 @@ data class StarshipsResponse(
     val starshipClass: String,
     @SerializedName("url")
     val url: String
-)
+): Response()

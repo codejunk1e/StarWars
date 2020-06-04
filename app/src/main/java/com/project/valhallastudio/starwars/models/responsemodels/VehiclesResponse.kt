@@ -26,7 +26,7 @@ import com.google.gson.annotations.SerializedName
         @SerializedName("model")
         val model: String,
         @SerializedName("name")
-        val name: String,
+        override var name: String,
         @SerializedName("passengers")
         val passengers: String,
         @SerializedName("pilots")
@@ -35,4 +35,4 @@ import com.google.gson.annotations.SerializedName
         val url: String,
         @SerializedName("vehicle_class")
         val vehicleClass: String
-    )
+    ): Response()

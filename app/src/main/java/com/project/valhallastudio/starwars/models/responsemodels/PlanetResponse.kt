@@ -16,7 +16,7 @@ import com.google.gson.annotations.SerializedName
         @SerializedName("gravity")
         val gravity: String,
         @SerializedName("name")
-        val name: String,
+        override var name: String,
         @SerializedName("orbital_period")
         val orbitalPeriod: String,
         @SerializedName("population")
@@ -31,4 +31,4 @@ import com.google.gson.annotations.SerializedName
         val terrain: String,
         @SerializedName("url")
         val url: String
-    )
+    ): Response()
