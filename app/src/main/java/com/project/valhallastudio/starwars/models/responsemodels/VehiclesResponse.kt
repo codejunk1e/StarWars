@@ -32,7 +32,7 @@ import com.google.gson.annotations.SerializedName
         @SerializedName("pilots")
         val pilots: List<String>,
         @SerializedName("url")
-        val url: String,
+        override var url: String,
         @SerializedName("vehicle_class")
         val vehicleClass: String
     ): Response()

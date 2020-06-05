@@ -30,5 +30,5 @@ import com.google.gson.annotations.SerializedName
         @SerializedName("terrain")
         val terrain: String,
         @SerializedName("url")
-        val url: String
+        override var url: String
     ): Response()

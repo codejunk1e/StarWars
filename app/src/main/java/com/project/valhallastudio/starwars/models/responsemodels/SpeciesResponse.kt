@@ -31,5 +31,5 @@ import com.google.gson.annotations.SerializedName
         @SerializedName("skin_colors")
         val skinColors: String,
         @SerializedName("url")
-        val url: String
+        override var url: String
     ): Response()

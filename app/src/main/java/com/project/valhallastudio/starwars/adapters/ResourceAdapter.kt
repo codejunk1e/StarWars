@@ -12,16 +12,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.project.valhallastudio.starwars.R
 import com.project.valhallastudio.starwars.models.Item
 import com.project.valhallastudio.starwars.models.responsemodels.FilmResponse
-import com.project.valhallastudio.starwars.models.responsemodels.PeopleResponse
-import com.project.valhallastudio.starwars.models.responsemodels.PlanetResponse
 import com.project.valhallastudio.starwars.models.responsemodels.Response
 
 /**
  * @author robin
  * Created on 6/3/20
  */
-class ResourceAdapter(diffCallback: DiffUtil.ItemCallback<Response>, private val images : List<Int>) :
-    PagedListAdapter<Response, ResourceAdapter.ViewHolder>(diffCallback) {
+class ResourceAdapter <T : Response>( private val images : List<Int> ) :
+    PagedListAdapter<T, ResourceAdapter.ViewHolder>(
+        object: DiffUtil.ItemCallback<T> (){
+            override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
+                return oldItem.url == newItem.url
+            }
+
+            override fun areContentsTheSame(oldItem: T, newItem: T): Boolean {
+                return if (oldItem !is  FilmResponse && newItem !is  FilmResponse){
+                    oldItem.name == newItem.name
+                } else{
+                    oldItem.title == newItem.title
+                }            }
+
+        }
+    ) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -51,8 +63,4 @@ class ResourceAdapter(diffCallback: DiffUtil.ItemCallback<Response>, private val
 
         }
     }
-
-
-
-
 }

@@ -12,33 +12,93 @@ import java.lang.reflect.Type
  */
 interface StarWarsEndpoints {
 
-    @GET("people/")
-    suspend fun getPeopleResponse(
+    @GET("{resource}/")
+    suspend fun getGenericResponse(
+        @Path("resource") resource : String,
+        @Query("page") page: Int
+    ) : BaseResponse<Response>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @GET("{resource}/")
+    suspend fun getGenericPeopleResponse(
+        @Path("resource") resource : String,
         @Query("page") page: Int
     ) : BaseResponse<PeopleResponse>
 
-    @GET("planets/")
-    suspend fun getPlanetsResponse(
+    @GET("{resource}/")
+    suspend fun getGenericPlanetResponse(
+        @Path("resource") resource : String,
         @Query("page") page: Int
     ) : BaseResponse<PlanetResponse>
 
-    @GET("films/")
-    suspend fun getFilmsResponse(
+    @GET("{resource}/")
+    suspend fun getGenericFilmResponse(
+        @Path("resource") resource : String,
         @Query("page") page: Int
     ) : BaseResponse<FilmResponse>
 
-    @GET("species/")
-    suspend fun getSpeciesResponse(
+    @GET("{resource}/")
+    suspend fun getGenericSpeciesResponse(
+        @Path("resource") resource : String,
         @Query("page") page: Int
     ) : BaseResponse<SpeciesResponse>
 
-    @GET("vehicles/")
-    suspend fun getVehiclesResponse(
+    @GET("{resource}/")
+    suspend fun getGenericVehicleResponse(
+        @Path("resource") resource : String,
         @Query("page") page: Int
     ) : BaseResponse<VehiclesResponse>
 
-    @GET("starships/")
-    suspend fun getStarshipsResponse(
+    @GET("{resource}/")
+    suspend fun getGenericStarshipResponse(
+        @Path("resource") resource : String,
         @Query("page") page: Int
     ) : BaseResponse<StarshipsResponse>
 

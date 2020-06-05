@@ -29,7 +29,7 @@ data class FilmResponse (
     @SerializedName("title")
     override var title: String,
     @SerializedName("url")
-    val url: String,
+    override var url: String,
     @SerializedName("vehicles")
     val vehicles: List<String>
 ) : Response()

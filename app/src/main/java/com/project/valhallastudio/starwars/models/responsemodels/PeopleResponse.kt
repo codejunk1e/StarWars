@@ -32,7 +32,7 @@ data class PeopleResponse(
     @SerializedName("starships")
     val starships: List<String>,
     @SerializedName("url")
-    val url: String,
+    override var url: String,
     @SerializedName("vehicles")
     val vehicles: List<String>
 ): Response()
