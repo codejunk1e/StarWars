@@ -1,6 +1,4 @@
 package com.project.valhallastudio.starwars.repository
-
-import com.project.valhallastudio.starwars.models.responsemodels.RootResponse
 import com.project.valhallastudio.starwars.webservice.StarWarsService
 
 /**

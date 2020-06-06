@@ -1,5 +1,6 @@
 package com.project.valhallastudio.starwars.datasource
 
+import android.util.Log
 import androidx.paging.PageKeyedDataSource
 import com.project.valhallastudio.starwars.adapters.StarPagerAdapter
 import com.project.valhallastudio.starwars.models.responsemodels.BaseResponse
@@ -8,17 +9,22 @@ import com.project.valhallastudio.starwars.models.responsemodels.Response
 import com.project.valhallastudio.starwars.webservice.StarWarsEndpoints
 import com.project.valhallastudio.starwars.webservice.StarWarsService
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope.coroutineContext
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import kotlin.coroutines.CoroutineContext
 
 /**
  * @author robin
  * Created on 6/5/20
  */
-class ResourceDataSource< T : Response> (private val scope: CoroutineScope, private val resource: String):
+class ResourceDataSource< T : Response> (private val context: CoroutineContext, private val resource: String):
     PageKeyedDataSource<Int, T>() {
 
     private val FIRST_PAGE = 1
+    private val job = Job()
+    private val scope = CoroutineScope(coroutineContext + job)
 
 
     override fun  loadInitial (
@@ -33,9 +39,9 @@ class ResourceDataSource< T : Response> (private val scope: CoroutineScope, priv
                         .getInstance()
                         .getGenericResponse(resource, FIRST_PAGE)
 
-                callback.onResult(response.results as MutableList<T>, null, FIRST_PAGE + 1)
+                callback.onResult(response.body()?.results as MutableList<T>, null, FIRST_PAGE + 1)
             } catch (e :Exception){
-
+                Log.e("OkHttp", "Failed to fetch data!")
             }
 
         }
@@ -54,10 +60,10 @@ class ResourceDataSource< T : Response> (private val scope: CoroutineScope, priv
                         .getInstance()
                         .getGenericResponse(resource, params.key)
 
-                val key = if (response.next != null) params.key + 1 else null
-                callback.onResult(response.results as MutableList<T>, key)
+                val key = if (response.body()?.next != null) params.key + 1 else null
+                callback.onResult(response.body()?.results as MutableList<T>, key)
             } catch (e :Exception){
-
+                Log.e("OkHttp", "Failed to fetch data!")
             }
         }
 
@@ -75,12 +81,22 @@ class ResourceDataSource< T : Response> (private val scope: CoroutineScope, priv
                         .getInstance()
                         .getGenericResponse(resource, params.key)
 
-                val key = if (response.previous != null) params.key - 1 else null
-                callback.onResult(response.results as MutableList<T>, key)
-            } catch (e :Exception){
 
+                if (response.isSuccessful) {
+
+                }
+
+                val key = if (response.body()?.previous != null) params.key - 1 else null
+                callback.onResult(response.body()?.results as MutableList<T>, key)
+            } catch (e :Exception){
+                Log.e("OkHttp", "Failed to fetch data!")
             }
 
         }
+    }
+
+    override fun invalidate() {
+        super.invalidate()
+        job.cancel()
     }
 }

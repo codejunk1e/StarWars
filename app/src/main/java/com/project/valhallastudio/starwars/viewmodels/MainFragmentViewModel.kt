@@ -1,10 +1,13 @@
 package com.project.valhallastudio.starwars.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.project.valhallastudio.starwars.adapters.StarPagerAdapter
+import com.project.valhallastudio.starwars.datasource.ResourceDataFactory
+import com.project.valhallastudio.starwars.models.responsemodels.PeopleResponse
 import com.project.valhallastudio.starwars.repository.Repository
-import com.project.valhallastudio.starwars.models.responsemodels.RootResponse
 import kotlinx.coroutines.Dispatchers
 
 /**
@@ -13,17 +16,17 @@ import kotlinx.coroutines.Dispatchers
  */
 class MainFragmentViewModel( ): ViewModel() {
 
+    var peoplePagedList: LiveData<PagedList<PeopleResponse>>
+
+    init {
+        val peopleData: ResourceDataFactory<PeopleResponse> =  ResourceDataFactory(Dispatchers.IO, "people")
+        peoplePagedList = LivePagedListBuilder(
+            peopleData,
+            PagedList.Config.Builder().setEnablePlaceholders(false).setPageSize(10).build()
+        ).build()
+    }
+
     private val repository = Repository()
-
-//    fun getUsers() = liveData(Dispatchers.IO) {
-//        emit(Resource.loading(data = null))
-//        try {
-//            emit(Resource.success(data = mainRepository.getUsers()))
-//        } catch (exception: Exception) {
-//            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
-//        }
-//    }
-
 
     val resourceList = listOf(
         StarPagerAdapter.Resource("People"),
@@ -33,6 +36,5 @@ class MainFragmentViewModel( ): ViewModel() {
         StarPagerAdapter.Resource("Vehicles"),
         StarPagerAdapter.Resource("Starships")
     )
-
 
 }

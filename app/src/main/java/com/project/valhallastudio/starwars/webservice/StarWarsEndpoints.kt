@@ -4,6 +4,7 @@ import com.project.valhallastudio.starwars.models.responsemodels.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.Response
 import java.lang.reflect.Type
 
 /**
@@ -16,7 +17,7 @@ interface StarWarsEndpoints {
     suspend fun getGenericResponse(
         @Path("resource") resource : String,
         @Query("page") page: Int
-    ) : BaseResponse<Response>
+    ) : Response <BaseResponse<com.project.valhallastudio.starwars.models.responsemodels.Response>>
 
 
 
