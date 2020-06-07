@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * @author robin
  * Created on 6/7/20
  */
-data class StarshipsResponse(
+data class VehiclesResponse(
     @SerializedName("cargo_capacity")
     val cargoCapacity: String,
     @SerializedName("consumables")
@@ -21,12 +21,8 @@ data class StarshipsResponse(
     val edited: String,
     @SerializedName("films")
     val films: List<String>,
-    @SerializedName("hyperdrive_rating")
-    val hyperdriveRating: String,
     @SerializedName("length")
     val length: String,
-    @SerializedName("MGLT")
-    val mGLT: String,
     @SerializedName("manufacturer")
     val manufacturer: String,
     @SerializedName("max_atmosphering_speed")
@@ -39,8 +35,8 @@ data class StarshipsResponse(
     val passengers: String,
     @SerializedName("pilots")
     val pilots: List<String>,
-    @SerializedName("starship_class")
-    val starshipClass: String,
     @SerializedName("url")
-    override var url: String
+    override var url: String,
+    @SerializedName("vehicle_class")
+    val vehicleClass: String
 ): Response()

@@ -43,7 +43,6 @@ class MainFragment : Fragment() {
 
         TabLayoutMediator(binding.tabLayoutMain, binding.viewpagerMain){ tab: TabLayout.Tab, position: Int ->
             tab.text = viewModel.resourceList[position].name
-
         }.attach()
 
         binding.viewpagerMain.registerOnPageChangeCallback(

@@ -8,7 +8,7 @@ import com.project.valhallastudio.starwars.databinding.ActivityMainBinding
  * @author Robin
  * Created on 5/6/20
  * This is the activity where the resources are represented in tabs and the contents in a recyclerview Fragment
- * [com.project.valhallastudio.starwars.views.fragments.ResourceFragment]
+ * [com.project.valhallastudio.starwars.views.fragments.PeopleFragment]
  */
 
 class MainActivity : AppCompatActivity() {

@@ -2,7 +2,6 @@ package com.project.valhallastudio.starwars.datasource
 
 import androidx.paging.DataSource
 import com.project.valhallastudio.starwars.models.responsemodels.Response
-import kotlinx.coroutines.CoroutineScope
 import kotlin.coroutines.CoroutineContext
 
 /**

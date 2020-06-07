@@ -2,6 +2,10 @@ package com.project.valhallastudio.starwars.models.responsemodels
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * @author robin
+ * Created on 6/7/20
+ */
 data class PeopleResponse(
     @SerializedName("birth_year")
     val birthYear: String,

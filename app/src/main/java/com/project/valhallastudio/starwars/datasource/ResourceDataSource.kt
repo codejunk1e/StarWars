@@ -2,11 +2,7 @@ package com.project.valhallastudio.starwars.datasource
 
 import android.util.Log
 import androidx.paging.PageKeyedDataSource
-import com.project.valhallastudio.starwars.adapters.StarPagerAdapter
-import com.project.valhallastudio.starwars.models.responsemodels.BaseResponse
-import com.project.valhallastudio.starwars.models.responsemodels.PeopleResponse
 import com.project.valhallastudio.starwars.models.responsemodels.Response
-import com.project.valhallastudio.starwars.webservice.StarWarsEndpoints
 import com.project.valhallastudio.starwars.webservice.StarWarsService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope.coroutineContext

@@ -2,9 +2,7 @@ package com.project.valhallastudio.starwars.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.project.valhallastudio.starwars.R
-import com.project.valhallastudio.starwars.models.Item
-import com.project.valhallastudio.starwars.views.fragments.ResourceFragment
+import com.project.valhallastudio.starwars.views.fragments.resources.PeopleFragment
 
 /**
  * @author Robin
@@ -12,19 +10,10 @@ import com.project.valhallastudio.starwars.views.fragments.ResourceFragment
  */
 class StarPagerAdapter( fragment : Fragment) :  FragmentStateAdapter(fragment) {
 
-    private val itemList = listOf(
-        Item(R.drawable.one, "Luke Skywalker"),
-        Item(R.drawable.two, "CP R7"),
-        Item(R.drawable.dp, "Luke Skywalker"),
-        Item(R.drawable.two, "CP R7"),
-        Item(R.drawable.one, "Luke Skywalker"),
-        Item(R.drawable.dp, "CP R7")
-    )
-
     override fun getItemCount(): Int = 6
 
     override fun createFragment(position: Int): Fragment {
-        return ResourceFragment(itemList)
+        return PeopleFragment()
     }
 
    data class Resource(val name: String){}
