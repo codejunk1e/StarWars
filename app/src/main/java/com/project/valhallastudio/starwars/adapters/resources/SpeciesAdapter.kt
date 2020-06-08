@@ -1,37 +1,33 @@
-package com.project.valhallastudio.starwars.adapters
+package com.project.valhallastudio.starwars.adapters.resources
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.DrawableRes
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.project.valhallastudio.starwars.R
-import com.project.valhallastudio.starwars.models.Item
 import com.project.valhallastudio.starwars.models.responsemodels.FilmResponse
 import com.project.valhallastudio.starwars.models.responsemodels.Response
+import com.project.valhallastudio.starwars.models.responsemodels.SpeciesResponse
 
 /**
  * @author robin
  * Created on 6/3/20
  */
-class ResourceAdapter <T : Response>( /*private val images : List<Int>*/ ) :
-    PagedListAdapter< T, ResourceAdapter.ViewHolder>(
-        object: DiffUtil.ItemCallback<T> (){
-            override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
+class SpeciesAdapter :
+    PagedListAdapter< SpeciesResponse, SpeciesAdapter.ViewHolder>(
+        object: DiffUtil.ItemCallback<SpeciesResponse> (){
+            override fun areItemsTheSame(oldItem: SpeciesResponse, newItem: SpeciesResponse): Boolean {
                 return oldItem.url == newItem.url
             }
 
-            override fun areContentsTheSame(oldItem: T, newItem: T): Boolean {
-                return if (oldItem !is  FilmResponse && newItem !is  FilmResponse){
-                    oldItem.name == newItem.name
-                } else{
-                    oldItem.title == newItem.title
-                }            }
-
+            override fun areContentsTheSame(oldItem: SpeciesResponse, newItem: SpeciesResponse): Boolean {
+                return oldItem.name == newItem.name
+            }
         }
     ) {
 
@@ -42,24 +38,27 @@ class ResourceAdapter <T : Response>( /*private val images : List<Int>*/ ) :
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val response = getItem(position);
+        val response: Response? = getItem(position);
         if (response != null){
-            holder.bind(response/*images[position]*/)
+            holder.bind(response, position)
         }
     }
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(item: Response/*  @DrawableRes image: Int*/) {
+        fun bind(
+            item: Response,
+            position: Int
+        ) {
             val itemImage = itemView.findViewById<ImageView>(R.id.itemImage)
             val itemText = itemView.findViewById<TextView>(R.id.itemTitle)
             itemImage.setImageResource(R.drawable.dp)
-
-            when(item){
-                !is  FilmResponse -> itemText.text = item.name
-                else -> itemText.text = item.title
-            }
+            itemText.text = item.name
+            Glide.with(itemView.context)
+                .load("https://starwars-visualguide.com/assets/img/species/${position + 1}.jpg")
+                .override(350, 400)
+                .into(itemImage)
 
         }
     }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.project.valhallastudio.starwars.R
 import com.project.valhallastudio.starwars.adapters.StarPagerAdapter
 import com.project.valhallastudio.starwars.datasource.ResourceDataFactory
 import com.project.valhallastudio.starwars.models.responsemodels.*
@@ -44,7 +45,7 @@ class MainFragmentViewModel( ): ViewModel() {
                 .build()
         ).build()
 
-        val planetData: ResourceDataFactory<PlanetResponse> =  ResourceDataFactory(Dispatchers.IO, "films")
+        val planetData: ResourceDataFactory<PlanetResponse> =  ResourceDataFactory(Dispatchers.IO, "planets")
         planetPagedList = LivePagedListBuilder(
             planetData,
             PagedList.Config
@@ -54,7 +55,7 @@ class MainFragmentViewModel( ): ViewModel() {
                 .build()
         ).build()
 
-        val speciesData: ResourceDataFactory<SpeciesResponse> =  ResourceDataFactory(Dispatchers.IO, "films")
+        val speciesData: ResourceDataFactory<SpeciesResponse> =  ResourceDataFactory(Dispatchers.IO, "species")
         speciesPagedList = LivePagedListBuilder(
             speciesData,
             PagedList.Config
@@ -64,7 +65,7 @@ class MainFragmentViewModel( ): ViewModel() {
                 .build()
         ).build()
 
-        val starshipsData: ResourceDataFactory<StarshipsResponse> =  ResourceDataFactory(Dispatchers.IO, "films")
+        val starshipsData: ResourceDataFactory<StarshipsResponse> =  ResourceDataFactory(Dispatchers.IO, "starships")
         starshipsPagedList = LivePagedListBuilder(
             starshipsData,
             PagedList.Config
@@ -73,7 +74,7 @@ class MainFragmentViewModel( ): ViewModel() {
                 .setPageSize(10)
                 .build()
         ).build()
-        val vehiclesData: ResourceDataFactory<VehiclesResponse> =  ResourceDataFactory(Dispatchers.IO, "films")
+        val vehiclesData: ResourceDataFactory<VehiclesResponse> =  ResourceDataFactory(Dispatchers.IO, "vehicles")
         vehiclesPagedList = LivePagedListBuilder(
             vehiclesData,
             PagedList.Config
@@ -87,12 +88,12 @@ class MainFragmentViewModel( ): ViewModel() {
     private val repository = Repository()
 
     val resourceList = listOf(
-        StarPagerAdapter.Resource("People"),
-        StarPagerAdapter.Resource("Planets"),
-        StarPagerAdapter.Resource("Films"),
-        StarPagerAdapter.Resource("Species"),
-        StarPagerAdapter.Resource("Vehicles"),
-        StarPagerAdapter.Resource("Starships")
+        StarPagerAdapter.Resource("Characters", R.drawable.ic_characters),
+        StarPagerAdapter.Resource("Planets", R.drawable.ic_characters),
+        StarPagerAdapter.Resource("Films", R.drawable.ic_characters),
+        StarPagerAdapter.Resource("Species", R.drawable.ic_characters),
+        StarPagerAdapter.Resource("Vehicles", R.drawable.ic_characters),
+        StarPagerAdapter.Resource("Starships", R.drawable.ic_characters)
     )
 
 }

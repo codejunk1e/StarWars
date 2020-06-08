@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 
 import com.project.valhallastudio.starwars.R
+import com.project.valhallastudio.starwars.views.activities.MainActivity
 
 /**
  * @author Robin
@@ -29,7 +30,6 @@ class SplashFragment : Fragment() {
     }
 
     private fun scheduleSplashScreen() {
-
         Handler().postDelayed({
             findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
         }, getSplashScreenDuration())

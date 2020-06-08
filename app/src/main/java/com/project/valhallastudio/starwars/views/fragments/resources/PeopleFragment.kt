@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.project.valhallastudio.starwars.adapters.ResourceAdapter
+import com.project.valhallastudio.starwars.adapters.resources.PeopleAdapter
 import com.project.valhallastudio.starwars.databinding.ResourceSceenItemsBinding
-import com.project.valhallastudio.starwars.models.responsemodels.PeopleResponse
 import com.project.valhallastudio.starwars.viewmodels.MainFragmentViewModel
 import kotlinx.android.synthetic.main.resource_sceen_items.*
 
@@ -19,7 +18,7 @@ import kotlinx.android.synthetic.main.resource_sceen_items.*
  */
 
 class PeopleFragment() : Fragment() {
-    private val resourceAdapter = ResourceAdapter<PeopleResponse>()
+    private val resourceAdapter = PeopleAdapter()
 
     private val viewModel by lazy {
         ViewModelProviders.of(this)[MainFragmentViewModel::class.java]

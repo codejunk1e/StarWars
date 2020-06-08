@@ -35,7 +35,12 @@ class ResourceDataSource< T : Response> (private val context: CoroutineContext, 
                         .getInstance()
                         .getGenericResponse(resource, FIRST_PAGE)
 
-                callback.onResult(response.body()?.results as MutableList<T>, null, FIRST_PAGE + 1)
+                if (response.isSuccessful) {
+                    val key = if (response.body()?.next != null) FIRST_PAGE + 1 else null
+                    callback.onResult(response.body()?.results as MutableList<T>, null, key)
+                }
+
+
             } catch (e :Exception){
                 Log.e("OkHttp", "Failed to fetch data!")
             }
@@ -56,8 +61,12 @@ class ResourceDataSource< T : Response> (private val context: CoroutineContext, 
                         .getInstance()
                         .getGenericResponse(resource, params.key)
 
-                val key = if (response.body()?.next != null) params.key + 1 else null
-                callback.onResult(response.body()?.results as MutableList<T>, key)
+                if (response.isSuccessful) {
+                    val key = if (response.body()?.next != null) params.key + 1 else null
+                    callback.onResult(response.body()?.results as MutableList<T>, key)
+                }
+
+
             } catch (e :Exception){
                 Log.e("OkHttp", "Failed to fetch data!")
             }
@@ -79,11 +88,10 @@ class ResourceDataSource< T : Response> (private val context: CoroutineContext, 
 
 
                 if (response.isSuccessful) {
-
+                    val key = if (response.body()?.previous != null) params.key - 1 else null
+                    callback.onResult(response.body()?.results as MutableList<T>, key)
                 }
 
-                val key = if (response.body()?.previous != null) params.key - 1 else null
-                callback.onResult(response.body()?.results as MutableList<T>, key)
             } catch (e :Exception){
                 Log.e("OkHttp", "Failed to fetch data!")
             }

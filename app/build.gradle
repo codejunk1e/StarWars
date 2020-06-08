@@ -68,4 +68,11 @@ dependencies {
     // OkHttp Logging interceptor
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
 
+    // Glide Dependencies
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    // Palette Api Dependency
+    implementation 'com.android.support:palette-v7:29.0.0'
+
 }
