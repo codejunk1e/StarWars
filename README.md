@@ -4,10 +4,10 @@
 A simple android app to test out a few concepts. Most of the things already in the app where inspired by this [website](https://starwars-visualguide.com/) and data is drawn from the [star wars API](https://swapi.dev/) formerly [here](https://github.com/phalt/swapi) but no longer maintained. 
 
 <p align="center">
-<img src="https://github.com/codejunk1e/StarWars/blob/master/images/characters.png" width="160">
-  <img src="https://github.com/codejunk1e/StarWars/blob/master/images/films.png" width="160">
-  <img src="https://github.com/codejunk1e/StarWars/blob/master/images/species.png" width="160">
-  <img src="https://github.com/codejunk1e/StarWars/blob/master/images/collapsing_menu.png" width="160">
+<img src="https://github.com/codejunk1e/StarWars/blob/master/images/characters.png" width="200">
+  <img src="https://github.com/codejunk1e/StarWars/blob/master/images/films.png" width="200">
+  <img src="https://github.com/codejunk1e/StarWars/blob/master/images/species.png" width="200">
+  <img src="https://github.com/codejunk1e/StarWars/blob/master/images/collapsing_menu.png" width="200">
 </p>
 
 ## Tech Used
