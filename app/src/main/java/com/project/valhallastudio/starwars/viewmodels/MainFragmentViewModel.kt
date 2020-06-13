@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
  * Created on 5/31/20
  */
 class MainFragmentViewModel( ): ViewModel() {
+    private val repository = Repository()
 
     var peoplePagedList: LiveData<PagedList<PeopleResponse>>
     var filmPagedList: LiveData<PagedList<FilmResponse>>
@@ -85,7 +86,7 @@ class MainFragmentViewModel( ): ViewModel() {
         ).build()
     }
 
-    private val repository = Repository()
+
 
     val resourceList = listOf(
         StarPagerAdapter.Resource("Characters", R.drawable.ic_characters),

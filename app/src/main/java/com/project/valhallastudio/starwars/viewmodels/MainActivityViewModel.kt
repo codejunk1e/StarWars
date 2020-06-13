@@ -3,7 +3,7 @@ package com.project.valhallastudio.starwars.viewmodels
 import androidx.lifecycle.ViewModel
 
 /**
- * @author kemosabe_x
+ * @author robin
  * Created on 5/31/20
  */
 class MainActivityViewModel: ViewModel() {

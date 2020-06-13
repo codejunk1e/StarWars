@@ -18,7 +18,6 @@ import kotlin.coroutines.CoroutineContext
 class ResourceDataSource< T : Response> (private val context: CoroutineContext, private val resource: String):
     PageKeyedDataSource<Int, T>() {
 
-    private val FIRST_PAGE = 1
     private val job = Job()
     private val scope = CoroutineScope(coroutineContext + job)
 
@@ -33,10 +32,10 @@ class ResourceDataSource< T : Response> (private val context: CoroutineContext, 
                 val response =
                     StarWarsService
                         .getInstance()
-                        .getGenericResponse(resource, FIRST_PAGE)
+                        .getGenericResponse(resource, Companion.FIRST_PAGE)
 
                 if (response.isSuccessful) {
-                    val key = if (response.body()?.next != null) FIRST_PAGE + 1 else null
+                    val key = if (response.body()?.next != null) Companion.FIRST_PAGE + 1 else null
                     callback.onResult(response.body()?.results as MutableList<T>, null, key)
                 }
 
@@ -102,5 +101,9 @@ class ResourceDataSource< T : Response> (private val context: CoroutineContext, 
     override fun invalidate() {
         super.invalidate()
         job.cancel()
+    }
+
+    companion object {
+        private const val FIRST_PAGE = 1
     }
 }
